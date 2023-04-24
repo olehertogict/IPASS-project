@@ -1,0 +1,5 @@
+Nearest neighbour algorithm (a greedy algorithm):
+https://en.wikipedia.org/wiki/Nearest_neighbour_algorithm
+
+Convex hull heuristic:
+https://www.reddit.com/r/compsci/comments/12us2lt/visualizing_the_traveling_salesman_problem_with/
