@@ -15,12 +15,20 @@ class City:
         return f'{self.name.capitalize()}{self.position}'
 
     def distance_to(self, city) -> float:
+        """
+        Calculate distance from self to city
+        :param city: An instance of City class to calculate distance to
+        :return: the distance from self to city
+        """
         diff_x = abs(self.x - city.x)
         diff_y = abs(self.y - city.y)
         distance = math.sqrt((diff_x ** 2) + (diff_y ** 2))
         return distance
 
-    def get_coordinates(self) -> tuple:
+    def get_coordinates(self) -> tuple[float | int, float | int]:
+        """
+        :return: Tuple with the coordinates of the city
+        """
         return self.x, self.y
 
 
