@@ -10,5 +10,15 @@ https://www.reddit.com/r/compsci/comments/12us2lt/visualizing_the_traveling_sale
 Christofides Algorithm:
 https://en.wikipedia.org/wiki/Christofides_algorithm
 
+2-Opt Algorithm:
+https://en.wikipedia.org/wiki/2-opt
+
 TSPLIB, A library containing data for TSP, problems with solutions:
 http://comopt.ifi.uni-heidelberg.de/software/TSPLIB95/tsp/
+
+Opdrachtomschrijving:
+Ik ga een implementatie maken van het 'travelling salesman problem' voor de bezorgservice DHL. De opdracht is als volgt:
+gegeven een x aantal adressen, vindt de kortste route die alle adressen precies 1 keer langs gaat en weer eindigt bij
+het beginpunt. Dit is een bekend probleem en hier bestaat geen oplossing voor. Wel bestaan er genoeg
+algoritmes/heuristieken die de beste oplossing benaderen. Ik ga ±4 algoritmes implementeren en visualiseren
+(Nearest neighbour algorithm, Christofides Algorithm, 2-Opt Algorithm, Lin-Kernighan Heuristic).
