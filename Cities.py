@@ -29,7 +29,7 @@ class City:
         """
         :return: Tuple with the coordinates of the city
         """
-        return self.x, self.y
+        return self.position
 
 
 if __name__ == "__main__":
