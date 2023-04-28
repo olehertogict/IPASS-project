@@ -12,6 +12,7 @@ matplotlib.use("Agg")
 matplotlib.rcParams["animation.writer"] = "pillow"
 
 def animate_tour(tour: Tour):
+    # TODO - change animate_tour() so function takes a list of tours to animate instead of 1 tour
     all_positions = [c.get_coordinates() for c in tour.cities]
     x_values, y_values = [i[0] for i in all_positions], [i[1] for i in all_positions]
     tour_animation = Tour([])
