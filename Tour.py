@@ -6,7 +6,7 @@ class Tour:
         self.cities = cities
         self.distance = 0
         # if Tour is initialized with cities already in the tour. calculate distance of the tour
-        if cities:
+        if len(cities) > 1:
             for i in range(len(cities) - 1):
                 self.distance += cities[i].distance_to(cities[i + 1])
 
@@ -26,7 +26,8 @@ class Tour:
         """
         :param city: Add a city to the Tour
         """
-        self.distance += self.cities[-1].distance_to(city)
+        if len(self.cities) > 1:
+            self.distance += self.cities[-1].distance_to(city)
         self.cities.append(city)
 
     def swap_cities(self, i: int, j: int) -> None:
