@@ -1,3 +1,6 @@
+TSP:
+http://www.ams.org/publicoutreach/feature-column/fcarc-tsp
+
 Nearest neighbour algorithm:
 https://en.wikipedia.org/wiki/Nearest_neighbour_algorithm
 Paper: "On the Nearest Neighbor Algorithms for the Traveling Salesman Problem"
