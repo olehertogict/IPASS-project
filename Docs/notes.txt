@@ -1,5 +1,8 @@
 Nearest neighbour algorithm:
 https://en.wikipedia.org/wiki/Nearest_neighbour_algorithm
+Paper: "On the Nearest Neighbor Algorithms for the Traveling Salesman Problem"
+https://sci-hub.se/10.1007/978-3-319-00951-3_11
+https://www.jstor.org/stable/169821?seq=1
 
 Lin-Kernighan Heuristic:
 https://en.wikipedia.org/wiki/Lin%E2%80%93Kernighan_heuristic
