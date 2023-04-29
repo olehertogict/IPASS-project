@@ -1,0 +1,6 @@
+tsplib95==0.7.1
+PySimpleGUI==4.60.4
+Pillow==9.5.0
+matplotlib==3.7.1
+matplotlib-inline==0.1.6
+numpy==1.24.3
