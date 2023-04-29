@@ -15,11 +15,12 @@ def animate_tour(tours: list[Tour]):
     plt.axis('off')
     plt.scatter(x_values, y_values)
 
-    def animate(frame):
+    def update(frame):
         lines = plt.plot([c.x for c in tours[frame]], [c.y for c in tours[frame]], color='blue')
         return lines
 
-    anim = FuncAnimation(fig, animate, frames=len(tours), interval=150)
+    interval = int(10000 / len(tours))  # every gif/animation should take 5 seconds
+    anim = FuncAnimation(fig, update, frames=len(tours), interval=interval)
     video = anim.save('animation.gif', writer='ffmpeg')
     plt.close()
 
