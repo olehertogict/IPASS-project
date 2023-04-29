@@ -2,8 +2,9 @@ import tsplib95
 import matplotlib
 import matplotlib.pyplot as plt
 from matplotlib.animation import FuncAnimation
-from Cities import City
+from City import City
 from Tour import Tour
+import Algorithms.NearestNeighbour as nn
 matplotlib.use("Agg")
 matplotlib.rcParams["animation.writer"] = "pillow"
 
@@ -33,6 +34,9 @@ def run():
     opt_tour = [1, 28, 6, 12, 9, 5, 26, 29, 3, 2, 20, 10, 4, 15, 18,
                 17, 14, 22, 11, 19, 25, 7, 23, 27, 8, 24, 16, 13, 21, 1]
     tours = [Tour([cities[j-1] for j in opt_tour[:i+1]]) for i in range(len(opt_tour))]
+    print(f"length of optimal tour is: {tours[-1].distance}")
+    # animate_tour(tours)
+    tours = nn.run()
     animate_tour(tours)
     pass
 
