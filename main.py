@@ -1,32 +1,25 @@
 import tsplib95
+import matplotlib
 import matplotlib.pyplot as plt
-from matplotlib.animation import FuncAnimation, PillowWriter
-import imageio
-from IPython import display
-import PySimpleGUI as sg
-import numpy as np
+from matplotlib.animation import FuncAnimation
 from Cities import City
 from Tour import Tour
-import matplotlib
 matplotlib.use("Agg")
 matplotlib.rcParams["animation.writer"] = "pillow"
 
-def animate_tour(tour: Tour):
-    # TODO - change animate_tour() so function takes a list of tours to animate instead of 1 tour
-    all_positions = [c.get_coordinates() for c in tour.cities]
+def animate_tour(tours: list[Tour]):
+    all_positions = [c.get_coordinates() for c in tours[-1].cities]
     x_values, y_values = [i[0] for i in all_positions], [i[1] for i in all_positions]
-    tour_animation = Tour([])
     # setup plot
     fig = plt.figure()
     plt.axis('off')
     plt.scatter(x_values, y_values)
 
     def animate(frame):
-        tour_animation.add_city(tour[frame])
-        lines = plt.plot([c.x for c in tour_animation], [c.y for c in tour_animation], color='blue')
+        lines = plt.plot([c.x for c in tours[frame]], [c.y for c in tours[frame]], color='blue')
         return lines
 
-    anim = FuncAnimation(fig, animate, frames=len(tour), interval=150)
+    anim = FuncAnimation(fig, animate, frames=len(tours), interval=150)
     video = anim.save('animation.gif', writer='ffmpeg')
     plt.close()
 
@@ -38,8 +31,8 @@ def run():
     cities = [City(str(name), tuple(pos)) for name, pos in c.items()]
     opt_tour = [1, 28, 6, 12, 9, 5, 26, 29, 3, 2, 20, 10, 4, 15, 18,
                 17, 14, 22, 11, 19, 25, 7, 23, 27, 8, 24, 16, 13, 21, 1]
-    tour = Tour([cities[i-1] for i in opt_tour])
-    animate_tour(tour)
+    tours = [Tour([cities[j-1] for j in opt_tour[:i+1]]) for i in range(len(opt_tour))]
+    animate_tour(tours)
     pass
 
 if __name__ == "__main__":
