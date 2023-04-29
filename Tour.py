@@ -22,6 +22,9 @@ class Tour:
     def __getitem__(self, i: int) -> City:
         return self.cities[i]
 
+    def __copy__(self):
+        return Tour(self.cities.copy())
+
     def add_city(self, city: City) -> None:
         """
         :param city: Add a city to the Tour
