@@ -23,16 +23,17 @@ def nearest_neighbour_algorithm(tour: Tour, cities: list[City], tours: list[Tour
     distances_from_city = {}
     for city in remaining_cities:
         # TODO - Write magic method for City class so City object is hashable
-        distances_from_city[city.name] = tour[-1].distance_to(city)
+        # distances_from_city[city.name] = tour[-1].distance_to(city)
+        distances_from_city[city] = tour[-1].distance_to(city)
     # Get minimum distance from current city
     min_distance = min(distances_from_city.values())
     # Get name of city with minimum distance
-    closest_city_name = [key for key, value in distances_from_city.items() if value == min_distance][0]
+    closest_city = [key for key, value in distances_from_city.items() if value == min_distance][0]
     # Get city object that is closest to current city
-    closest_city = [city for city in cities if city.name == closest_city_name][0]
+    # closest_city = [city for city in cities if city.name == closest_city_name][0]
     tour.add_city(closest_city)
     # Make list of remaining cities to choose from next iteration
-    remaining_cities = [city for city in remaining_cities if city.name != closest_city_name]
+    remaining_cities = [city for city in remaining_cities if city != closest_city]
     print(f"adding city {closest_city} to tour")
     # Append a copy of this tour to the list of tours (for animation)
     tours.append(copy.copy(tour))

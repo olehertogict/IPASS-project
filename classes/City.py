@@ -13,6 +13,9 @@ class City:
 
     def __repr__(self):
         return f'{self.name.capitalize()}{self.position}'
+    
+    def __hash__(self) -> int:
+        return hash((self.name, self.position))
 
     def distance_to(self, city) -> float:
         """
