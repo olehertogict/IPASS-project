@@ -2,8 +2,8 @@ import copy
 import random
 
 import tsplib95
-from City import City
-from Tour import Tour
+from classes.City import City
+from classes.Tour import Tour
 
 def get_tsp_problem(file_name: str) -> list[City]:
     problem = tsplib95.load(file_name)

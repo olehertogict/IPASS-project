@@ -1,4 +1,4 @@
-from City import City
+from classes.City import City
 
 
 class Tour:

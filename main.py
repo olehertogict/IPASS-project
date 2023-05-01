@@ -2,8 +2,8 @@ import tsplib95
 import matplotlib
 import matplotlib.pyplot as plt
 from matplotlib.animation import FuncAnimation
-from City import City
-from Tour import Tour
+from classes.City import City
+from classes.Tour import Tour
 import Algorithms.NearestNeighbour as nn
 matplotlib.use("Agg")
 matplotlib.rcParams["animation.writer"] = "pillow"
