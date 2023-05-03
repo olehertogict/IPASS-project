@@ -9,11 +9,11 @@ class TspGui(QWidget):
     def __init__(self):
         super().__init__()
         self.current_algorithm = 'Nearest neighbour'
-        self.problems = ['att48', 'a280', 'bays29', 'berlin52', 'ch130', 'ch150']
+        self.problems = ['att48', 'a280', 'bays29', 'berlin52', 'ch130', 'ch150', 'fl1577']
 
         self.setWindowTitle('Travelling Salesman Problem')
 
-        run(f'TestProblems/att48.tsp')
+        self.tour_length = run(f'TestProblems/att48.tsp')
         # Create label widget to display the GIF
         self.movie_label = QLabel(self)
         self.movie = QMovie("animation.gif", QByteArray(), self)
@@ -24,6 +24,11 @@ class TspGui(QWidget):
         hbox1.addWidget(self.movie_label)
 
         vbox1 = QVBoxLayout()
+
+        self.label4 = QLabel()
+        self.label4.setText(f'Length of the current tour = {round(self.tour_length, 2)}')
+        vbox1.addWidget(self.label4)
+
         self.label1 = QLabel()
         self.label1.setText(f'Currently using algorithm: {self.current_algorithm}')
         vbox1.addWidget(self.label1)
@@ -90,15 +95,16 @@ class TspGui(QWidget):
     def button1_call(self):
         self.current_algorithm = self.combo.currentText()
         self.label1.setText(f'Currently using algorithm: {self.current_algorithm}')
-        return
 
     def calculateRouteCall(self):
         print(f'{self.combo1.currentText()} chosen')
-        run(f'TestProblems/{self.combo1.currentText()}.tsp')
+
+        self.tour_length = run(f'TestProblems/{self.combo1.currentText()}.tsp')
         self.movie = QMovie("animation.gif", QByteArray(), self)
         self.movie_label.setMovie(self.movie)
         self.movie.start()
-        return
+
+        self.label4.setText(f'Length of the current tour = {round(self.tour_length, 2)}')
 
 
 def runGUI():
