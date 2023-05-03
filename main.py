@@ -25,18 +25,18 @@ def animate_tour(tours: list[Tour]):
     video = anim.save('animation.gif', writer='ffmpeg')
     plt.close()
 
-def run():
-    # initalize a given tour with known  answer
-    problem = tsplib95.load('/Users/oledenhertog/Downloads/bays29.tsp')
+def get_tsp_problem_from_file(file_name: str) -> list[City]:
+    problem = tsplib95.load(file_name)
     problem_dict = problem.as_name_dict()
-    c = problem_dict.get('display_data')
+    print(problem_dict)
+    # File has to have a 'NODE_COORD_SECTION'
+    c = problem_dict.get('node_coords')
     cities = [City(str(name), tuple(pos)) for name, pos in c.items()]
-    opt_tour = [1, 28, 6, 12, 9, 5, 26, 29, 3, 2, 20, 10, 4, 15, 18,
-                17, 14, 22, 11, 19, 25, 7, 23, 27, 8, 24, 16, 13, 21, 1]
-    tours = [Tour([cities[j-1] for j in opt_tour[:i+1]]) for i in range(len(opt_tour))]
-    print(f"length of optimal tour is: {tours[-1].distance}")
-    # animate_tour(tours)
-    tours = nn.run()
+    return cities
+
+def run():
+    cities = get_tsp_problem_from_file('TestProblems/berlin52.tsp')
+    tours = nn.run(cities)
     animate_tour(tours)
     pass
 
