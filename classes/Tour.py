@@ -45,6 +45,12 @@ class Tour:
         for i in range(len(self.cities) - 1):
             self.distance += self.cities[i].distance_to(self.cities[i + 1])
 
+    def calc_distance(self):
+        self.distance = 0
+        for i in range(len(self.cities) - 1):
+            self.distance += self.cities[i].distance_to(self.cities[i + 1])
+        return self.distance
+
 
 if __name__ == "__main__":
     c1 = City("Utrecht", (0, 0))
