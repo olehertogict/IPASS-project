@@ -28,17 +28,17 @@ def animate_tour(tours: list[Tour]):
 def get_tsp_problem_from_file(file_name: str) -> list[City]:
     problem = tsplib95.load(file_name)
     problem_dict = problem.as_name_dict()
-    print(problem_dict)
     # File has to have a 'NODE_COORD_SECTION'
     c = problem_dict.get('node_coords')
     cities = [City(str(name), tuple(pos)) for name, pos in c.items()]
     return cities
 
-def run():
-    cities = get_tsp_problem_from_file('TestProblems/berlin52.tsp')
+def run(file_name):
+    cities = get_tsp_problem_from_file(file_name)
     tours = nn.run(cities)
+    print(f'the algorithm took {len(tours)} steps')
     animate_tour(tours)
     pass
 
 if __name__ == "__main__":
-    run()
+    run('TestProblems/berlin52.tsp')
