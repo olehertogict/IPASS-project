@@ -1,12 +1,14 @@
 import tsplib95
 import matplotlib
 import matplotlib.pyplot as plt
+from matplotlib import animation
 from matplotlib.animation import FuncAnimation
 from classes.City import City
 from classes.Tour import Tour
 import Algorithms.NearestNeighbour as nn
-matplotlib.use("Agg")
-matplotlib.rcParams["animation.writer"] = "pillow"
+import ffmpeg
+# matplotlib.use("Agg")
+# matplotlib.rcParams["animation.writer"] = "pillow"
 
 def animate_tour(tours: list[Tour]):
     all_positions = [c.get_coordinates() for c in tours[-1].cities]
@@ -21,8 +23,14 @@ def animate_tour(tours: list[Tour]):
         return lines
 
     interval = int(10000 / len(tours))  # every gif/animation should take 10 seconds
+    print('start animating')
     anim = FuncAnimation(fig, update, frames=len(tours), interval=interval)
-    video = anim.save('animation.gif', writer='ffmpeg')
+    print('start saving')
+    # anim.save('animation.gif', writer='ffmpeg')
+    # anim.save('animation.gif')
+    writer = animation.ImageMagickWriter(fps=30)
+    anim.save('animation.gif', writer=writer)
+    print('done saving')
     plt.close()
 
 def get_tsp_problem_from_file(file_name: str) -> list[City]:
