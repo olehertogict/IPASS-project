@@ -2,13 +2,13 @@ import tsplib95
 import matplotlib
 import matplotlib.pyplot as plt
 from matplotlib import animation
-from matplotlib.animation import FuncAnimation
+from matplotlib.animation import FuncAnimation, PillowWriter
 from classes.City import City
 from classes.Tour import Tour
 import Algorithms.NearestNeighbour as nn
-import ffmpeg
+# import ffmpeg
 # matplotlib.use("Agg")
-# matplotlib.rcParams["animation.writer"] = "pillow"
+# matplotlib.rcParams["animation.writer"] = "ffmpeg"
 
 def animate_tour(tours: list[Tour]):
     all_positions = [c.get_coordinates() for c in tours[-1].cities]
@@ -26,10 +26,8 @@ def animate_tour(tours: list[Tour]):
     print('start animating')
     anim = FuncAnimation(fig, update, frames=len(tours), interval=interval)
     print('start saving')
-    # anim.save('animation.gif', writer='ffmpeg')
-    # anim.save('animation.gif')
-    writer = animation.ImageMagickWriter(fps=30)
-    anim.save('animation.gif', writer=writer)
+    writervideo = animation.FFMpegWriter()
+    anim.save(r"animation.mp4", writer=writervideo)
     print('done saving')
     plt.close()
 
@@ -49,4 +47,4 @@ def run(file_name: str) -> float:
     return tours[-1].distance
 
 if __name__ == "__main__":
-    run('TestProblems/berlin52.tsp')
+    run('TestProblems/a280.tsp')
