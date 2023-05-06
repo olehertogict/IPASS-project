@@ -21,6 +21,16 @@ https://en.wikipedia.org/wiki/2-opt
 
 Genetic Algorithm:
 https://www.researchgate.net/publication/226665831_Genetic_Algorithms_for_the_Travelling_Salesman_Problem_A_Review_of_Representations_and_Operators
+pseudocode:
+- genereer random populatie
+- for i in range(max_generations)
+    - selecteer ouders van huidige generatie
+    - creëer kinderen van gekozen ouders
+    - muteer kinderen
+    - voeg kinderen toe aan huidige populatie
+    - reduceer huidige populatie tot max populatie grootte
+    - herhaal
+- selecteer beste individueel uit huidige generatie
 
 TSPLIB, A library containing data for TSP, problems with solutions:
 http://comopt.ifi.uni-heidelberg.de/software/TSPLIB95/tsp/
