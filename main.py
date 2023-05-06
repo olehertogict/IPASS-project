@@ -1,16 +1,24 @@
 import tsplib95
-import matplotlib
 import matplotlib.pyplot as plt
 from matplotlib import animation
-from matplotlib.animation import FuncAnimation, PillowWriter
+from matplotlib.animation import FuncAnimation
 from classes.City import City
 from classes.Tour import Tour
 import Algorithms.NearestNeighbour as nn
+import Algorithms.Genetic as genetic
+from pprint import pprint
+import copy
 # import ffmpeg
 # matplotlib.use("Agg")
 # matplotlib.rcParams["animation.writer"] = "ffmpeg"
 
 def animate_tour(tours: list[Tour]):
+    if len(tours) == 1:
+        tour = tours[0].cities
+        new_tours = []
+        for i in range(len(tours[0])):
+            new_tours.append(Tour(copy.copy(tour[:i])))
+        tours = new_tours
     all_positions = [c.get_coordinates() for c in tours[-1].cities]
     x_values, y_values = [i[0] for i in all_positions], [i[1] for i in all_positions]
     # setup plot
@@ -27,7 +35,7 @@ def animate_tour(tours: list[Tour]):
     anim = FuncAnimation(fig, update, frames=len(tours), interval=interval)
     print('start saving')
     writervideo = animation.FFMpegWriter()
-    anim.save(r"animation.mp4", writer=writervideo)
+    anim.save(r"animation.gif", writer=writervideo)
     print('done saving')
     plt.close()
 
@@ -41,10 +49,12 @@ def get_tsp_problem_from_file(file_name: str) -> list[City]:
 
 def run(file_name: str) -> float:
     cities = get_tsp_problem_from_file(file_name)
-    tours = nn.run(cities)
+    # tours = nn.run(cities)
+    tours = [genetic.run(cities, 500, 100)]
     print(f'the algorithm took {len(tours)} steps')
     animate_tour(tours)
     return tours[-1].distance
 
+
 if __name__ == "__main__":
-    run('TestProblems/a280.tsp')
+    run('TestProblems/att48.tsp')
