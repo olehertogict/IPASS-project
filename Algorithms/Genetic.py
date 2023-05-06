@@ -68,12 +68,14 @@ def run(cities, POPULATION_SIZE, MAX_GENERATION):
     for i in range(POPULATION_SIZE):
         random.shuffle(cities)
         population.append(Tour(copy.copy(cities)))
-
+    # Go through all generations
     for i in range(MAX_GENERATION):
         print(f'generation: {i}')
         parents = select_parents(population)
+        # generate 5 times more children than the population size
         children = create_children(parents, 5 * POPULATION_SIZE)
         population.extend(children)
+        # select fittest individuals
         population = selection(population, POPULATION_SIZE)
 
     sorted_population = sorted(population, key=lambda ind: ind.distance)
