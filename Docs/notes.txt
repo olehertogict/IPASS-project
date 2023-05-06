@@ -21,7 +21,7 @@ https://en.wikipedia.org/wiki/2-opt
 
 Genetic Algorithm:
 https://www.researchgate.net/publication/226665831_Genetic_Algorithms_for_the_Travelling_Salesman_Problem_A_Review_of_Representations_and_Operators
-pseudocode:
+algoritme stappen:
 - genereer random populatie
 - for i in range(max_generations)
     - selecteer ouders van huidige generatie
@@ -31,6 +31,17 @@ pseudocode:
     - reduceer huidige populatie tot max populatie grootte
     - herhaal
 - selecteer beste individueel uit huidige generatie
+Pseudocode:
+"""
+population = random.population(max_population)
+for i in range(max_generations):
+    parents = select_parents(population)
+    children = create_children(parents, 10 * max_population)
+    mutated_children = mutate(children)
+    population.append(mutated_children)
+    population = reduce_pop(population)
+return best_tour(population)
+"""
 
 TSPLIB, A library containing data for TSP, problems with solutions:
 http://comopt.ifi.uni-heidelberg.de/software/TSPLIB95/tsp/
