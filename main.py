@@ -17,7 +17,7 @@ def animate_tour(tours: list[Tour]):
         tour = tours[0].cities
         new_tours = []
         for i in range(len(tours[0])):
-            new_tours.append(Tour(copy.copy(tour[:i])))
+            new_tours.append(Tour(copy.copy(tour[:i + 1])))
         tours = new_tours
     all_positions = [c.get_coordinates() for c in tours[-1].cities]
     x_values, y_values = [i[0] for i in all_positions], [i[1] for i in all_positions]
@@ -50,7 +50,7 @@ def get_tsp_problem_from_file(file_name: str) -> list[City]:
 def run(file_name: str) -> float:
     cities = get_tsp_problem_from_file(file_name)
     # tours = nn.run(cities)
-    tours = [genetic.run(cities, 500, 100)]
+    tours = [genetic.run(cities, 500, 500)]
     print(f'the algorithm took {len(tours)} steps')
     animate_tour(tours)
     return tours[-1].distance
