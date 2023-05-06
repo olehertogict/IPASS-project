@@ -1,18 +1,7 @@
-from classes.City import City
 from classes.Tour import Tour
 import random
-import tsplib95
 import copy
 from pprint import pprint
-
-# initalize a given tour with known  answer
-# problem = tsplib95.load('/Users/oledenhertog/Downloads/att48.tsp')
-# problem_dict = problem.as_name_dict()
-# c = problem_dict.get('node_coords')
-# cities = [City(str(name), tuple(pos)) for name, pos in c.items()]
-# all_city_names = [name for name in c.keys()]
-# opt_tour = [1, 28, 6, 12, 9, 5, 26, 29, 3, 2, 20, 10, 4, 15, 18,
-#             17, 14, 22, 11, 19, 25, 7, 23, 27, 8, 24, 16, 13, 21, 1]
 
 def select_parents(population):
     sorted_population = sorted(population, key=lambda ind: ind.distance)
@@ -30,6 +19,9 @@ def mutate(individual, mutation_chance):
     return individual
 
 def crossover(parent1, parent2):
+    # exlude last city, which is same as first city, from tour
+    parent1 = parent1[:len(parent1) - 1]
+    parent2 = parent2[:len(parent2) - 1]
     # generate slice of parent1
     i, j = random.sample(range(len(parent1)), 2)
     if i > j:
@@ -54,6 +46,8 @@ def create_children(parents, number_of_children):
         parent2 = random.choice(parents)
         child = crossover(parent1, parent2)
         child = mutate(child, 0.1)
+        # add first city, to back of the tour to create circle
+        child.add_city(child[0])
         children.append(child)
 
     return children
@@ -68,6 +62,7 @@ def run(cities, POPULATION_SIZE, MAX_GENERATION):
     for i in range(POPULATION_SIZE):
         random.shuffle(cities)
         population.append(Tour(copy.copy(cities)))
+        population[i].add_city(population[i][0])
     # Go through all generations
     for i in range(MAX_GENERATION):
         print(f'generation: {i}')
@@ -79,7 +74,7 @@ def run(cities, POPULATION_SIZE, MAX_GENERATION):
         population = selection(population, POPULATION_SIZE)
 
     sorted_population = sorted(population, key=lambda ind: ind.distance)
-    pprint(sorted_population[0])
+    pprint(len(sorted_population[0]))
     pprint(sorted_population[0].distance)
     return sorted_population[0]
 
