@@ -60,4 +60,7 @@ algoritmes/heuristieken die de beste oplossing benaderen. Ik ga ±4 algoritmes i
 halen
 - GUI maken in c++ of GUI in python en route berekenen in c++
 - visualizatie in PyGame ipv matplotlib?
-- class TspProblem maken
+- class TspProblem:
+  - \_\_init\_\_(self, name, cities=None)
+  - getCitiesFromUser(self)
+  - addCity(self, name, coords)
