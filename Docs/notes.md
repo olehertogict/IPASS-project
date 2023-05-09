@@ -2,16 +2,16 @@
 http://www.ams.org/publicoutreach/feature-column/fcarc-tsp
 
 ## Nearest neighbour algorithm:
-https://en.wikipedia.org/wiki/Nearest_neighbour_algorithm\
-Paper: "On the Nearest Neighbor Algorithms for the Traveling Salesman Problem"\
-https://sci-hub.se/10.1007/978-3-319-00951-3_11\
-https://www.jstor.org/stable/169821?seq=1\
+https://en.wikipedia.org/wiki/Nearest_neighbour_algorithm
+Paper: "On the Nearest Neighbor Algorithms for the Traveling Salesman Problem"
+https://sci-hub.se/10.1007/978-3-319-00951-3_11
+https://www.jstor.org/stable/169821?seq=1
 
 ## Lin-Kernighan Heuristic:
 https://en.wikipedia.org/wiki/Lin%E2%80%93Kernighan_heuristic
 
 ## Convex hull heuristic:
-geen paper gevonden\
+geen paper gevonden
 https://www.reddit.com/r/compsci/comments/12us2lt/visualizing_the_traveling_salesman_problem_with/
 
 ## Christofides Algorithm:
@@ -21,7 +21,7 @@ https://en.wikipedia.org/wiki/Christofides_algorithm
 https://en.wikipedia.org/wiki/2-opt
 
 ## Genetic Algorithm:
-https://www.researchgate.net/publication/226665831_Genetic_Algorithms_for_the_Travelling_Salesman_Problem_A_Review_of_Representations_and_Operators \
+https://www.researchgate.net/publication/226665831_Genetic_Algorithms_for_the_Travelling_Salesman_Problem_A_Review_of_Representations_and_Operators 
 algoritme stappen:
 - genereer random populatie
 - for i in range(max_generations)
