@@ -1,15 +1,20 @@
 from classes.City import City
 from classes.Tour import Tour
 
-def two_opt_switch(tour: Tour, i: int, j: int):
+def two_opt_switch(tour: Tour, i: int, j: int) -> None:
+    """
+    reverse order of the cities between the indices
+    :param tour: the tour where the cities will be switched
+    :param i: starting index
+    :param j: ending index
+    """
     reversed_tour = []
     for k in range(j, i, -1):
         reversed_tour.append(tour[k])
     tour.cities[i+1:j+1] = reversed_tour
 
-def run(cities: list[City]):
+def run(cities: list[City]) -> Tour:
     tour = Tour(cities)
-    print(tour, tour.calc_distance())
     n = len(tour)
     found_improvement = True
     while found_improvement:
@@ -23,7 +28,6 @@ def run(cities: list[City]):
                     found_improvement = True
 
     tour.add_city(tour[0])
-    print(tour, tour.calc_distance())
     return tour
 
 

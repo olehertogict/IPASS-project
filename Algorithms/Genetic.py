@@ -77,6 +77,3 @@ def run(cities, POPULATION_SIZE=100, MAX_GENERATION=200):
     pprint(len(sorted_population[0]))
     pprint(sorted_population[0].distance)
     return sorted_population[0]
-
-if __name__ == "__main__":
-    run()

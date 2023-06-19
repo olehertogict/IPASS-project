@@ -14,7 +14,7 @@ def nearest_neighbour_algorithm(tour: Tour, cities: list[City], tours: list[Tour
     remaining_cities = cities
     distances_from_city = {}
     for city in remaining_cities:
-        distances_from_city[city] = tour[-1].distance_to(city)
+        distances_from_city[city] = tour[-1].distance2(city)
     # Get minimum distance from current city
     min_distance = min(distances_from_city.values())
     # Get city with minimum distance
