@@ -2,14 +2,12 @@ import tsplib95
 import matplotlib.pyplot as plt
 from classes.City import City
 from classes.Tour import Tour
-from classes.TspProblem import TspProblem
 import Algorithms.NearestNeighbour as NearestNeighbour
 import Algorithms.Genetic as Genetic
 import Algorithms.TwoOpt as TwoOpt
 import api_key
 
-
-def animate_tour(tour: Tour):
+def create_tour_image(tour: Tour):
     all_positions = [c.get_coordinates() for c in tour.cities]
     x_values, y_values = [i[0] for i in all_positions], [i[1] for i in all_positions]
     # setup plot
@@ -31,11 +29,6 @@ def run(file_name: str, algorithm: str) -> float:
     cities = get_tsp_problem_from_file(file_name)
     algortihms = {'Nearest Neighbour': NearestNeighbour, 'Evolutionary/Genetic': Genetic, '2-Opt': TwoOpt}
     tour = algortihms[algorithm].run(cities)
-    animate_tour(tour)
+    create_tour_image(tour)
     return tour.calc_distance()
 
-
-if __name__ == "__main__":
-    problem = TspProblem()
-    problem.get_tsp_problem_from_file('TspProblems/att48.tsp')
-    TwoOpt.run(problem.cities)
