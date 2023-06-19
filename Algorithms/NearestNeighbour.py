@@ -23,7 +23,7 @@ def nearest_neighbour_algorithm(tour: Tour, cities: list[City], tours: list[Tour
     # Make list of remaining cities to choose from next iteration
     remaining_cities = [city for city in remaining_cities if city != closest_city]
     # Append a copy of this tour to the list of tours (for animation)
-    tours.append(copy.copy(tour))
+    # tours.append(copy.copy(tour))
     return nearest_neighbour_algorithm(tour, remaining_cities, tours)
 
 def run(cities) -> list[Tour]:
@@ -32,7 +32,7 @@ def run(cities) -> list[Tour]:
     tour = Tour([starting_city])
     tour_steps = nearest_neighbour_algorithm(tour, all_cities, [])
     print('algorithm done calculating')
-    return tour_steps
+    return tour_steps[-1]
 
 if __name__ == "__main__":
     run([City('1', (0, 0)), City('2', (1, 1)), City('3', (6, 6))])
