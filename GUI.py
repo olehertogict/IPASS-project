@@ -1,7 +1,6 @@
 from PyQt5.QtWidgets import \
-    QApplication, QWidget, QLabel, QVBoxLayout, QHBoxLayout, QPushButton, QLineEdit, QComboBox
-from PyQt5.QtGui import QMovie, QPixmap
-from PyQt5.QtCore import QByteArray
+    QApplication, QWidget, QLabel, QVBoxLayout, QHBoxLayout, QPushButton, QComboBox
+from PyQt5.QtGui import QPixmap
 import sys
 from main import *
 
@@ -14,11 +13,6 @@ class TspGui(QWidget):
         self.setWindowTitle('Travelling Salesman Problem')
 
         self.tour_length = run(f'TestProblems/att48.tsp', 'Nearest Neighbour')
-        # Create label widget to display the GIF
-        # self.movie_label = QLabel(self)
-        # self.movie = QMovie("animation.gif", QByteArray(), self)
-        # self.movie_label.setMovie(self.movie)
-        # self.movie.start()
 
         # Create label widget to display the image
         self.image_label = QLabel(self)
@@ -26,7 +20,6 @@ class TspGui(QWidget):
         self.image_label.setPixmap(pixmap)
 
         hbox1 = QHBoxLayout()
-        # hbox1.addWidget(self.movie_label)
         hbox1.addWidget(self.image_label)
 
         vbox1 = QVBoxLayout()
@@ -48,10 +41,6 @@ class TspGui(QWidget):
         self.combo.addItem('Evolutionary/Genetic')
         self.combo.addItem('2-Opt')
         vbox1.addWidget(self.combo)
-
-        # self.button1 = QPushButton('submit', self)
-        # vbox1.addWidget(self.button1)
-        # self.button1.clicked.connect(self.button1_call)
 
         self.label3 = QLabel()
         self.label3.setText('Select an existing TSP problem:')
@@ -81,9 +70,6 @@ class TspGui(QWidget):
         print(f'{self.combo1.currentText()} chosen')
 
         self.tour_length = run(f'TestProblems/{self.combo1.currentText()}.tsp', self.combo.currentText())
-        # self.movie = QMovie("animation.gif", QByteArray(), self)
-        # self.movie_label.setMovie(self.movie)
-        # self.movie.start()
 
         pixmap = QPixmap("animation.jpeg")
         self.image_label.setPixmap(pixmap)
