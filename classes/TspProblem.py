@@ -32,7 +32,3 @@ class TspProblem:
         c = problem_dict.get('node_coords')
         self.cities = [City(str(name), tuple(pos)) for name, pos in c.items()]
 
-
-if __name__ == "__main__":
-    problem = TspProblem()
-    problem.get_cities_from_user()
