@@ -3,13 +3,12 @@ from PyQt5.QtWidgets import \
 from PyQt5.QtGui import QPixmap
 import sys
 from main import *
-from math import sqrt
 
 class TspGui(QWidget):
     def __init__(self):
         super().__init__()
         self.current_algorithm = 'Nearest neighbour'
-        self.problems = ['att48', 'a280', 'berlin52', 'ch130', 'ch150', 'fl1577']
+        self.problems = ['att48', 'a280', 'berlin52', 'ch130', 'ch150', 'dj38', 'fl1577', 'wi29']
 
         self.setWindowTitle('Travelling Salesman Problem')
 
