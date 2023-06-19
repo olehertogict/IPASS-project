@@ -45,11 +45,3 @@ class City:
         return self.position
 
 
-if __name__ == "__main__":
-    c1 = City("Utrecht", (0, 0))
-    c2 = City("Amsterdam", (3, 4))
-    print(c1.distance_to(c2))
-    print(c2.distance_to(c1))
-    print(c1)
-    print(c2)
-    pass
