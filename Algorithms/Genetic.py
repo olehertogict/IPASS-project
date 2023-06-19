@@ -56,7 +56,7 @@ def selection(population, max_population):
     sorted_population = sorted(population, key=lambda ind: ind.distance)
     return sorted_population[:max_population]
 
-def run(cities, POPULATION_SIZE, MAX_GENERATION):
+def run(cities, POPULATION_SIZE=100, MAX_GENERATION=200):
     # generate initial random population
     population = []
     for i in range(POPULATION_SIZE):
