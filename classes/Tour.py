@@ -45,7 +45,13 @@ class Tour:
         for i in range(len(self.cities) - 1):
             self.distance += self.cities[i].distance_to(self.cities[i + 1])
 
-    def calc_distance(self):
+    def calc_distance(self) -> float:
+        self.distance = 0
+        for i in range(len(self.cities) - 1):
+            self.distance += self.cities[i].distance_to(self.cities[i + 1])
+        return self.distance
+
+    def calc_distance2(self) -> float:
         self.distance = 0
         for i in range(len(self.cities) - 1):
             self.distance += self.cities[i].distance_to(self.cities[i + 1])

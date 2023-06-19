@@ -28,6 +28,16 @@ class City:
         distance = math.sqrt((diff_x ** 2) + (diff_y ** 2))
         return distance
 
+    def distance2(self, city) -> float:
+        """
+        Calculate distance squared from self to city
+        :param city: An instance of City class to calculate distance to
+        :return: the distance from self to city squared
+        """
+        diff_x = self.x - city.x
+        diff_y = self.y - city.y
+        return (diff_x ** 2) + (diff_y ** 2)
+
     def get_coordinates(self) -> tuple[float | int, float | int]:
         """
         :return: Tuple with the coordinates of the city
