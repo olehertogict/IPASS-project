@@ -3,6 +3,7 @@ from PyQt5.QtWidgets import \
 from PyQt5.QtGui import QPixmap
 import sys
 from main import *
+from math import sqrt
 
 class TspGui(QWidget):
     def __init__(self):
@@ -67,7 +68,6 @@ class TspGui(QWidget):
 
     def calculateRouteCall(self):
         self.button1_call()
-        print(f'{self.combo1.currentText()} chosen')
 
         self.tour_length = run(f'TestProblems/{self.combo1.currentText()}.tsp', self.combo.currentText())
 
