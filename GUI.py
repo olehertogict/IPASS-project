@@ -1,6 +1,6 @@
 from PyQt5.QtWidgets import \
     QApplication, QWidget, QLabel, QVBoxLayout, QHBoxLayout, QPushButton, QLineEdit, QComboBox
-from PyQt5.QtGui import QMovie
+from PyQt5.QtGui import QMovie, QPixmap
 from PyQt5.QtCore import QByteArray
 import sys
 from main import *
@@ -13,15 +13,21 @@ class TspGui(QWidget):
 
         self.setWindowTitle('Travelling Salesman Problem')
 
-        self.tour_length = run(f'TestProblems/att48.tsp')
+        self.tour_length = run(f'TestProblems/att48.tsp', 'Nearest Neighbour')
         # Create label widget to display the GIF
-        self.movie_label = QLabel(self)
-        self.movie = QMovie("animation.gif", QByteArray(), self)
-        self.movie_label.setMovie(self.movie)
-        self.movie.start()
+        # self.movie_label = QLabel(self)
+        # self.movie = QMovie("animation.gif", QByteArray(), self)
+        # self.movie_label.setMovie(self.movie)
+        # self.movie.start()
+
+        # Create label widget to display the image
+        self.image_label = QLabel(self)
+        pixmap = QPixmap("animation.jpeg")
+        self.image_label.setPixmap(pixmap)
 
         hbox1 = QHBoxLayout()
-        hbox1.addWidget(self.movie_label)
+        # hbox1.addWidget(self.movie_label)
+        hbox1.addWidget(self.image_label)
 
         vbox1 = QVBoxLayout()
 
@@ -38,12 +44,14 @@ class TspGui(QWidget):
         vbox1.addWidget(self.label2)
 
         self.combo = QComboBox(self)
-        self.combo.addItem('Nearest neighbour')
+        self.combo.addItem('Nearest Neighbour')
+        self.combo.addItem('Evolutionary/Genetic')
+        self.combo.addItem('2-Opt')
         vbox1.addWidget(self.combo)
 
-        self.button1 = QPushButton('submit', self)
-        vbox1.addWidget(self.button1)
-        self.button1.clicked.connect(self.button1_call)
+        # self.button1 = QPushButton('submit', self)
+        # vbox1.addWidget(self.button1)
+        # self.button1.clicked.connect(self.button1_call)
 
         self.label3 = QLabel()
         self.label3.setText('Select an existing TSP problem:')
@@ -54,7 +62,7 @@ class TspGui(QWidget):
             self.combo1.addItem(p_name)
         vbox1.addWidget(self.combo1)
 
-        self.button3 = QPushButton('Recalculate route', self)
+        self.button3 = QPushButton('Calculate route', self)
         vbox1.addWidget(self.button3)
         self.button3.clicked.connect(self.calculateRouteCall)
 
@@ -69,12 +77,16 @@ class TspGui(QWidget):
         self.label1.setText(f'Currently using algorithm: {self.current_algorithm}')
 
     def calculateRouteCall(self):
+        self.button1_call()
         print(f'{self.combo1.currentText()} chosen')
 
-        self.tour_length = run(f'TestProblems/{self.combo1.currentText()}.tsp')
-        self.movie = QMovie("animation.gif", QByteArray(), self)
-        self.movie_label.setMovie(self.movie)
-        self.movie.start()
+        self.tour_length = run(f'TestProblems/{self.combo1.currentText()}.tsp', self.combo.currentText())
+        # self.movie = QMovie("animation.gif", QByteArray(), self)
+        # self.movie_label.setMovie(self.movie)
+        # self.movie.start()
+
+        pixmap = QPixmap("animation.jpeg")
+        self.image_label.setPixmap(pixmap)
 
         self.label4.setText(f'Length of the current tour = {round(self.tour_length, 2)}')
 
