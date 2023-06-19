@@ -4,6 +4,7 @@ http://www.ams.org/publicoutreach/feature-column/fcarc-tsp
 ## Nearest neighbour algorithm:
 https://en.wikipedia.org/wiki/Nearest_neighbour_algorithm
 Paper: "On the Nearest Neighbor Algorithms for the Traveling Salesman Problem"
+Kizilateş, G., Nuriyeva, F. (2013). On the Nearest Neighbor Algorithms for the Traveling Salesman Problem. In: Nagamalai, D., Kumar, A., Annamalai, A. (eds) Advances in Computational Science, Engineering and Information Technology. Advances in Intelligent Systems and Computing, vol 225. Springer, Heidelberg. https://doi.org/10.1007/978-3-319-00951-3_11
 https://sci-hub.se/10.1007/978-3-319-00951-3_11
 https://www.jstor.org/stable/169821?seq=1
 
@@ -37,7 +38,7 @@ Pseudocode:
 population = random.population(max_population)
 for i in range(max_generations):
     parents = select_parents(population)
-    children = create_children(parents, 10 * max_population)
+    children = create_children(parents, 5 * max_population)
     mutated_children = mutate(children)
     population.append(mutated_children)
     population = reduce_pop(population, max_population)
