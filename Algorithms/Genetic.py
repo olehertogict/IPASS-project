@@ -1,7 +1,6 @@
 from classes.Tour import Tour
 import random
 import copy
-from pprint import pprint
 
 def select_parents(population):
     sorted_population = sorted(population, key=lambda ind: ind.distance)
@@ -74,6 +73,4 @@ def run(cities, POPULATION_SIZE=100, MAX_GENERATION=200):
         population = selection(population, POPULATION_SIZE)
 
     sorted_population = sorted(population, key=lambda ind: ind.distance)
-    pprint(len(sorted_population[0]))
-    pprint(sorted_population[0].distance)
     return sorted_population[0]
