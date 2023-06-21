@@ -11,10 +11,10 @@ class TspGui(QWidget):
         self.problems = ['att48', 'a280', 'berlin52', 'ch130', 'ch150', 'dj38', 'fl1577', 'wi29']
 
         self.setWindowTitle('DHL route calculator')
+        self.setStyleSheet("QPushButton { background-color: white; color: black; border-radius: 5px; }")
 
         self.tour_length = calc_route('att48', 'Nearest Neighbour')
 
-        # Create label widget to display the image
         self.image_label = QLabel(self)
         pixmap = QPixmap("images/animation.jpeg")
         self.image_label.setPixmap(pixmap)
@@ -23,6 +23,12 @@ class TspGui(QWidget):
         hbox1.addWidget(self.image_label)
 
         vbox1 = QVBoxLayout()
+
+        self.image_label2 = QLabel(self)
+        pixmap = QPixmap("images/DHL-LOGO.jpg")
+        resized_pixmap = pixmap.scaled(270, 120)
+        self.image_label2.setPixmap(resized_pixmap)
+        vbox1.addWidget(self.image_label2)
 
         self.label4 = QLabel()
         self.label4.setText(f'Length of the current tour = {round(self.tour_length, 2)}')
@@ -52,6 +58,7 @@ class TspGui(QWidget):
         vbox1.addWidget(self.combo1)
 
         self.button1 = QPushButton('Calculate route', self)
+        self.button1.setStyleSheet("")
         vbox1.addWidget(self.button1)
         self.button1.clicked.connect(self.calculateRouteCall)
 
