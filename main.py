@@ -14,13 +14,13 @@ def create_tour_image(tour: Tour):
     all_positions = [c.get_coordinates() for c in tour.cities]
     x_values, y_values = [i[0] for i in all_positions], [i[1] for i in all_positions]
     # setup plot
-    fig = plt.figure()
+    fig = plt.figure(figsize=(10, 8))
     plt.axis('off')
-    img = plt.imread("maps_image.jpeg")
+    img = plt.imread("images/maps_image.jpeg")
     plt.imshow(img, extent=[min(x_values)-10, max(x_values)+10, min(y_values)-10, max(y_values)+10])
     plt.scatter(x_values, y_values)
     plt.plot([c.x for c in tour], [c.y for c in tour], color='blue')
-    plt.savefig('animation.jpeg')
+    plt.savefig('images/animation.jpeg', bbox_inches='tight')
 
 def get_tsp_problem_from_file(file_name: str) -> list[City]:
     problem = tsplib95.load(file_name)
