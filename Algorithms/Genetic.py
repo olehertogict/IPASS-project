@@ -1,6 +1,7 @@
 from classes.Tour import Tour
 import random
 import copy
+import Algorithms.NearestNeighbour as NearestNeighbour
 
 def select_parents(population):
     sorted_population = sorted(population, key=lambda ind: ind.distance)
@@ -59,9 +60,8 @@ def run(cities, POPULATION_SIZE=100, MAX_GENERATION=200):
     # generate initial random population
     population = []
     for i in range(POPULATION_SIZE):
-        random.shuffle(cities)
-        population.append(Tour(copy.copy(cities)))
-        population[i].add_city(population[i][0])
+        # use nearest neighbour algorithm to initialize first tours
+        population.append(NearestNeighbour.run(copy.copy(cities)))
     # Go through all generations
     for i in range(MAX_GENERATION):
         print(f'generation: {i}')
