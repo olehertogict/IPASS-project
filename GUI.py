@@ -1,5 +1,5 @@
 from PyQt5.QtWidgets import \
-    QApplication, QWidget, QLabel, QVBoxLayout, QHBoxLayout, QPushButton, QComboBox
+    QApplication, QWidget, QLabel, QVBoxLayout, QHBoxLayout, QPushButton, QComboBox, QMainWindow
 from PyQt5.QtGui import QPixmap
 import sys
 from main import *
@@ -10,13 +10,13 @@ class TspGui(QWidget):
         self.current_algorithm = 'Nearest neighbour'
         self.problems = ['att48', 'a280', 'berlin52', 'ch130', 'ch150', 'dj38', 'fl1577', 'wi29']
 
-        self.setWindowTitle('Travelling Salesman Problem')
+        self.setWindowTitle('DHL route calculator')
 
-        self.tour_length = run(f'TestProblems/att48.tsp', 'Nearest Neighbour')
+        self.tour_length = calc_route('att48', 'Nearest Neighbour')
 
         # Create label widget to display the image
         self.image_label = QLabel(self)
-        pixmap = QPixmap("animation.jpeg")
+        pixmap = QPixmap("images/animation.jpeg")
         self.image_label.setPixmap(pixmap)
 
         hbox1 = QHBoxLayout()
@@ -51,9 +51,13 @@ class TspGui(QWidget):
             self.combo1.addItem(p_name)
         vbox1.addWidget(self.combo1)
 
-        self.button3 = QPushButton('Calculate route', self)
-        vbox1.addWidget(self.button3)
-        self.button3.clicked.connect(self.calculateRouteCall)
+        self.button1 = QPushButton('Calculate route', self)
+        vbox1.addWidget(self.button1)
+        self.button1.clicked.connect(self.calculateRouteCall)
+
+        self.button2 = QPushButton('Create TSP problem', self)
+        vbox1.addWidget(self.button2)
+        self.button2.clicked.connect(self.createCities)
 
         hbox1.addLayout(vbox1)
 
@@ -61,19 +65,22 @@ class TspGui(QWidget):
 
         self.show()
 
-    def button1_call(self):
+    def calculateRouteCall(self):
         self.current_algorithm = self.combo.currentText()
         self.label1.setText(f'Currently using algorithm: {self.current_algorithm}')
 
-    def calculateRouteCall(self):
-        self.button1_call()
+        self.tour_length = calc_route(self.combo1.currentText(), self.combo.currentText())
 
-        self.tour_length = run(f'TestProblems/{self.combo1.currentText()}.tsp', self.combo.currentText())
-
-        pixmap = QPixmap("animation.jpeg")
+        pixmap = QPixmap("images/animation.jpeg")
         self.image_label.setPixmap(pixmap)
 
         self.label4.setText(f'Length of the current tour = {round(self.tour_length, 2)}')
+
+    def createCities(self):
+        self.extra_window = QMainWindow()
+        self.extra_window.setWindowTitle("Extra Window")
+        self.extra_window.setGeometry(200, 200, 400, 300)
+        self.extra_window.show()
 
 
 def runGUI():
@@ -81,5 +88,3 @@ def runGUI():
     ex = TspGui()
     sys.exit(app.exec_())
 
-if __name__ == '__main__':
-    runGUI()
