@@ -13,7 +13,7 @@ class TspGui(QWidget):
         self.setWindowTitle('DHL route calculator')
         self.setStyleSheet("QPushButton { background-color: white; color: black; border-radius: 5px; }")
 
-        self.tour_length = calc_route('att48', 'Nearest Neighbour')
+        self.tour_data = calc_route('att48', 'Nearest Neighbour')
 
         self.image_label = QLabel(self)
         pixmap = QPixmap("images/animation.jpeg")
@@ -31,8 +31,12 @@ class TspGui(QWidget):
         vbox1.addWidget(self.image_label2)
 
         self.label4 = QLabel()
-        self.label4.setText(f'Length of the current tour = {round(self.tour_length, 2)}')
+        self.label4.setText(f'Length of the current tour: {round(self.tour_data["distance"], 2)}')
         vbox1.addWidget(self.label4)
+
+        self.label5 = QLabel()
+        self.label5.setText(f'Calculation time: {round(self.tour_data["time"], 8)}')
+        vbox1.addWidget(self.label5)
 
         self.label1 = QLabel()
         self.label1.setText(f'Currently using algorithm: {self.current_algorithm}')
@@ -76,12 +80,13 @@ class TspGui(QWidget):
         self.current_algorithm = self.combo.currentText()
         self.label1.setText(f'Currently using algorithm: {self.current_algorithm}')
 
-        self.tour_length = calc_route(self.combo1.currentText(), self.combo.currentText())
+        self.tour_data = calc_route(self.combo1.currentText(), self.combo.currentText())
 
         pixmap = QPixmap("images/animation.jpeg")
         self.image_label.setPixmap(pixmap)
 
-        self.label4.setText(f'Length of the current tour = {round(self.tour_length, 2)}')
+        self.label4.setText(f'Length of the current tour: {round(self.tour_data["distance"], 2)}')
+        self.label5.setText(f'Calculation time: {round(self.tour_data["time"], 8)}')
 
     def createCities(self):
         self.extra_window = QMainWindow()
