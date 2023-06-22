@@ -1,7 +1,7 @@
 import copy
 import random
-from classes.City import City
-from classes.Tour import Tour
+from Classes.City import City
+from Classes.Tour import Tour
 
 def nearest_neighbour_algorithm(tour: Tour, cities: list[City], tours: list[Tour]):
     if not cities:

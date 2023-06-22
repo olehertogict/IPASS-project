@@ -1,4 +1,4 @@
-from classes.Tour import Tour
+from Classes.Tour import Tour
 import random
 import copy
 import Algorithms.NearestNeighbour as NearestNeighbour

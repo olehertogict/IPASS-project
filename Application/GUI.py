@@ -62,7 +62,7 @@ class TspGui(QWidget):
         self.tour_data = calc_route('att48', 'Nearest Neighbour')
 
         self.image_label = QLabel(self)
-        pixmap = QPixmap("images/animation.jpeg")
+        pixmap = QPixmap("Images/animation.jpeg")
         self.image_label.setPixmap(pixmap)
 
         hbox1 = QHBoxLayout()
@@ -71,7 +71,7 @@ class TspGui(QWidget):
         vbox1 = QVBoxLayout()
 
         self.image_label2 = QLabel(self)
-        pixmap = QPixmap("images/DHL-LOGO.jpg")
+        pixmap = QPixmap("Images/DHL-LOGO.jpg")
         resized_pixmap = pixmap.scaled(270, 120)
         self.image_label2.setPixmap(resized_pixmap)
         vbox1.addWidget(self.image_label2)
@@ -134,7 +134,7 @@ class TspGui(QWidget):
         else:
             self.tour_data = calc_route('OwnAlgorithm', self.combo.currentText(), self.cities)
 
-        pixmap = QPixmap("images/animation.jpeg")
+        pixmap = QPixmap("Images/animation.jpeg")
         self.image_label.setPixmap(pixmap)
 
         self.label4.setText(f'Length of the current tour: {round(self.tour_data["distance"], 2)}')

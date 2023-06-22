@@ -1,5 +1,5 @@
-from classes.City import City
-from classes.Tour import Tour
+from Classes.City import City
+from Classes.Tour import Tour
 
 def two_opt_switch(tour: Tour, i: int, j: int) -> None:
     """
