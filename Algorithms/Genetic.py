@@ -57,8 +57,7 @@ def crossover(parent1: Tour, parent2: Tour) -> Tour:
     for k in range(len(parent1)):
         if child[k] == 0:
             child[k] = remaining_cities.pop(0)
-    child = Tour(child)
-    return child
+    return Tour(child)
 
 def create_children(parents: list[Tour], number_of_children: int) -> list[Tour]:
     """
