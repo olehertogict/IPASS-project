@@ -7,8 +7,14 @@ from main import *
 import ast
 
 
-class CreateCitiesDialog(QDialog):
-    def __init__(self, tsp_gui):
+class CitiesDialog(QDialog):
+    """
+    A class for a pop-up window for creating a tsp problem.
+    """
+    def __init__(self, tsp_gui: QWidget):
+        """
+        :param tsp_gui: A QWidget instance that has to have a cities attribute
+        """
         super().__init__()
         self.tsp_gui = tsp_gui
         self.cities = []
@@ -38,18 +44,27 @@ class CreateCitiesDialog(QDialog):
 
         self.setLayout(layout)
 
-    def submit_city(self):
+    def submit_city(self) -> None:
+        """
+        Get the city name and its coordinates from the input boxes.
+        """
         city_name = self.city_input.text()
         coords = self.coords_input.text()
         self.city_input.setText('')
         self.coords_input.setText('')
         self.cities.append(City(city_name, ast.literal_eval(coords)))
 
-    def done_button_clicked(self):
+    def done_button_clicked(self) -> None:
+        """
+        Write the cities that have been put in to the parent class
+        """
         self.tsp_gui.cities = self.cities
         self.close()
 
 class TspGui(QWidget):
+    """
+    A class for displaying a GUI for the tsp problem
+    """
     def __init__(self):
         super().__init__()
         self.cities = []
@@ -125,7 +140,11 @@ class TspGui(QWidget):
 
         self.show()
 
-    def calculateRouteCall(self):
+    def calculateRouteCall(self) -> None:
+        """
+        Get the current algorithm and current problem and calculate the 'optimal' route, set image to newly generated
+        image and update calculation time and length of the tour
+        """
         self.current_algorithm = self.combo.currentText()
         self.label1.setText(f'Currently using algorithm: {self.current_algorithm}')
 
@@ -140,8 +159,11 @@ class TspGui(QWidget):
         self.label4.setText(f'Length of the current tour: {round(self.tour_data["distance"], 2)}')
         self.label5.setText(f'Calculation time: {round(self.tour_data["time"], 8)}')
 
-    def createCities(self):
-        dialog = CreateCitiesDialog(self)
+    def createCities(self) -> None:
+        """
+        Create a CitiesDialog instance
+        """
+        dialog = CitiesDialog(self)
         dialog.exec_()
 
 
