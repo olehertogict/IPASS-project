@@ -12,6 +12,7 @@ def nearest_neighbour_algorithm(cities: list[City]):
     """
     remaining_cities = cities
     current_city = random.choice(cities)
+    remaining_cities.remove(current_city)
     tour = Tour([current_city])
     while remaining_cities:
         # current city is the last city in the tour
