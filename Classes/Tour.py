@@ -29,8 +29,7 @@ class Tour:
         """
         :param city: Add a city to the Tour
         """
-        if len(self.cities) > 1:
-            self.distance += self.cities[-1].distance2(city)
+        self.calc_distance2()
         self.cities.append(city)
 
     def swap_cities(self, i: int, j: int) -> None:
@@ -40,10 +39,7 @@ class Tour:
         :param j: City on index j
         """
         self.cities[i], self.cities[j] = self.cities[j], self.cities[i]
-        # Recalculate distance
-        self.distance = 0
-        for i in range(len(self.cities) - 1):
-            self.distance += self.cities[i].distance2(self.cities[i + 1])
+        self.calc_distance2()
 
     def calc_distance(self) -> float:
         self.distance = 0
