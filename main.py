@@ -1,7 +1,4 @@
-import tsplib95
-import matplotlib.pyplot as plt
 from Classes.City import City
-from Classes.Tour import Tour
 from Utils import utils
 import Algorithms.NearestNeighbour as NearestNeighbour
 import Algorithms.Genetic as Genetic
