@@ -2,7 +2,7 @@ import unittest
 from Classes.City import City
 
 
-class MyTestCase(unittest.TestCase):
+class CityTest(unittest.TestCase):
     def test_init(self):
         c = City('utr', (20, 5))
         self.assertEqual(c.name, 'utr')
