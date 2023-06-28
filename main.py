@@ -9,6 +9,15 @@ import csv
 
 
 def calc_route(file_name: str, algorithm: str, city_list: list[City] = None) -> dict:
+    """
+    Calculate a route using the TSP from the provided file_name. Calculated using the provided algorithm
+
+    :param file_name: The path to the .tsp from which to get the tsp problem
+    :param algorithm: The name of the algorithm to use ('Nearest Neighbour' or 'Evolutionary/Genetic' or '2-Opt')
+    :param city_list: Optional argument, a list of cities to calculate the tsp problem from
+    :return: A dictionary containg {'problem': the problem name, 'algo': the algorithm used, 'time': the time
+    it took to calculate, 'distance': the length of the route found}
+    """
     if not city_list:
         cities = utils.get_tsp_problem_from_file(f'TestProblems/{file_name}.tsp')
     else:
