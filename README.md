@@ -44,4 +44,6 @@ of a few the average calculation times and route lengths.
 
 Inside the "Docs" folder there is a poster for the project and a project summary.
 
-![poster](Docs/posterProject.pdf)
+[//]: # (![poster]&#40;Docs/posterProject.pdf&#41;)
+
+<embed src="Docs/posterProject.pdf" type="application/pdf">
