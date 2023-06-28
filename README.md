@@ -13,7 +13,7 @@ git clone "https://github.com/olehertogict/IPASS-project"
 ```
 When the project is done cloning navigate to the project folder in the terminal.
 ```commandline
-cd your_path/IPASS-project 
+cd YOUR_PATH/IPASS-project 
 ```
 And run the following command to install all required packages.
 ```commandline
@@ -21,3 +21,9 @@ pip install -r requirements.txt
 ```
 Congratulations you are now done with all the installation. To run the project just run the 'main.py' file and the GUI
 will appear.
+
+## Usage
+The usage of the GUI is fairly straight forward. You can select which algorithm to use for the next calculation using
+the dropdown box. You can also choose to use a few different already made TSP problems. To calculate the route click on
+'calculate route'. 
+There also is the possibility to create an own set of cities to calculate a route for.
